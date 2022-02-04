@@ -1,0 +1,6 @@
+<%= simple_form_for wish do |f| %>
+  <%= f.input :budget %>
+  <%= f.input :invited %>
+  <%= f.submit %>
+  <%= link_to 'Delete', wish, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

@@ -1,0 +1,43 @@
+<h1><%= current_user.email %>'s Wishes</h1>
+
+<%# display all the wishes in a table %>
+<%# should be able to edit, delete, switch it to visits %>
+
+<% if @wishes.empty? %>
+  <p>You don't have any wishes yet!</p>
+  <p>Add one here</p>
+  <%= link_to 'New Wish!', new_wish_path %>
+<% else %>
+  <div id="wish_index"></div>
+  <table>
+    <tr>
+      <th>Country</th>
+      <th>Estimated budget</th>
+      <th>Who's going with you?</th>
+    </tr>
+    <% @wishes.each do |wish| %>
+      <tr>
+        <td>
+          <%= link_to wish.country.name, country_path(wish.country) %>
+          <%# <img src="" alt=""> add in the country flag? %>
+        </th>
+        <td><%= wish.budget %></td>
+        <td><%= wish.invited %></td>
+        <td><%= link_to 'Edit', edit_wish_path(wish) %>
+          <%# remote:true
+          <%= render :partial => "form", locals: { wish: wish } do %>
+            <%# Edit %>
+          <%# <% end %>
+        <%# <% end %>
+        </td>
+      </tr>
+      <%# be able to click on a wish to say you've been and make it a "visit" %>
+      <%# add the date and notes %>
+      <%# redirect to visits index %>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to "Why not add another?", new_wish_path %>
+
+<%= link_to "Back to home page", root_path %>

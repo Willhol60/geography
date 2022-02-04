@@ -1,0 +1,36 @@
+
+<h1><%= current_user.email %>'s Visits</h1>
+
+<%# display all the wishes in a table %>
+<%# should be able to edit, delete, switch it to visits %>
+
+<% if @visits.empty? %>
+  <p>You haven't been anywhere yet!</p>
+  <p>Add one here</p>
+  <%= link_to 'New Visit!', new_visit_path %>
+<% else %>
+  <table>
+    <tr>
+      <th>Country</th>
+      <th>Date visited</th>
+      <th>Notes</th>
+    </tr>
+    <% @visits.each do |visit| %>
+      <tr>
+        <td>
+          <%= visit.country.name %>
+          <%# <img src="" alt=""> add in the country flag? %>
+        </td>
+        <td><%= visit.date %></td>
+        <td><%= visit.notes %></td>
+        <%# attach photos %>
+        <%# background can show photos that have been uploaded %>
+      </tr>
+    <% end %>
+  </table>
+  <%# map showing countries visited TRICKY %>
+<% end %>
+
+<%= link_to "Add somewhere else you've visited", new_visit_path %>
+
+<%= link_to "Back to home page", root_path %>

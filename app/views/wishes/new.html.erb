@@ -1,0 +1,9 @@
+<%= simple_form_for @wish do |f| %>
+  <%= f.association :country, label_method: :name, value_method: :id %>
+  <%# country alphabetically ordered %>
+  <%= f.input :budget %>
+  <%= f.input :invited %>
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>
+
+<%= link_to 'Cancel', wishes_path %>
