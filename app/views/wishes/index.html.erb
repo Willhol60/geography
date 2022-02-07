@@ -1,43 +1,57 @@
-<h1><%= current_user.email %>'s Wishes</h1>
+<%# <img src="images/tropical.jpg" class="bg" alt=""> %>
 
+<div class='list-header'>
+  <h1>Your Wishlist</h1>
+</div>
+
+<%# <div class="actions">
+  <%= link_to "Back to home page", root_path, class: "navigation" %>
+<%# </div> %>
 <%# display all the wishes in a table %>
 <%# should be able to edit, delete, switch it to visits %>
 
 <% if @wishes.empty? %>
-  <p>You don't have any wishes yet!</p>
-  <p>Add one here</p>
-  <%= link_to 'New Wish!', new_wish_path %>
+  <div class="list empty-list">
+    <p>You don't have anything on your Wishlist yet!</p>
+    <%= link_to 'Create your first', new_wish_path, class: "navigation new" %>
+  </div>
 <% else %>
-  <div id="wish_index"></div>
-  <table>
+  <table class="list">
     <tr>
-      <th>Country</th>
-      <th>Estimated budget</th>
+      <th></th>
+      <th></th>
+      <th class='column-one'>Country</th>
+      <th>Budget</th>
       <th>Who's going with you?</th>
     </tr>
     <% @wishes.each do |wish| %>
       <tr>
-        <td>
-          <%= link_to wish.country.name, country_path(wish.country) %>
-          <%# <img src="" alt=""> add in the country flag? %>
-        </th>
-        <td><%= wish.budget %></td>
-        <td><%= wish.invited %></td>
-        <td><%= link_to 'Edit', edit_wish_path(wish) %>
+        <td><%= link_to edit_wish_path(wish) do %>
+            <i class="fas fa-edit" style="color:black"></i>
+          <% end %>
           <%# remote:true
           <%= render :partial => "form", locals: { wish: wish } do %>
             <%# Edit %>
           <%# <% end %>
         <%# <% end %>
         </td>
+        <td><%= link_to wish_path(wish), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %>
+            <i class="fas fa-trash-alt" style="color:black"></i>
+          <% end %>
+        </td>
+        <td class='column-one'>
+          <%= link_to wish.country.name, country_path(wish.country) %>
+          <%# <img src="" alt=""> add in the country flag? %>
+        </td>
+        <td>£<%= wish.budget %></td>
+        <td><%= wish.invited %></td>
       </tr>
       <%# be able to click on a wish to say you've been and make it a "visit" %>
       <%# add the date and notes %>
       <%# redirect to visits index %>
     <% end %>
+    <tr>
+      <%= link_to "Why not add another?", new_wish_path %>
+    </tr>
   </table>
 <% end %>
-
-<%= link_to "Why not add another?", new_wish_path %>
-
-<%= link_to "Back to home page", root_path %>
