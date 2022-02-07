@@ -1,2 +1,14 @@
 // Import page-specific CSS files here.
 @import "home";
+@import "lists";
+@import "new_form";
+@import "play";
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  min-width: 100%;
+  min-height: 100%;
+}
