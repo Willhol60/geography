@@ -1,3 +1,19 @@
-<h1>Welcome to PLAY</h1>
+<div class="list-header">
+  <h1>Welcome to PLAY</h1>
+</div>
 
-<%= link_to "Back to home page", root_path %>
+<div class="actions">
+  <%= link_to "Back to home page", root_path, class: "navigation" %>
+</div>
+
+<div class="play-window">
+  <img src=<%= @country.flag %> alt="">
+
+  <h1><%= @country.name %></h1>
+
+  <h3> Capital: <%= @country.capital&.split&.join(' ') %> </h3>
+
+  <h3> Population: <%= number_with_delimiter(@country.population) %> </h3>
+
+  <%# <p> Bordering countries: <%= @country.borders %>
+</div>

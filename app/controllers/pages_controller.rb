@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def play
+    @country = Country.all.sample
+  end
 end

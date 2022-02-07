@@ -1,7 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-layout">
+  <%= video_tag "earth.mov", autoplay: :autoplay, loop: :loop, class: "home-video" %>
 
-<h2>What are you here for?</h2>
-<%= link_to 'Test your geography', play_path %>
-<%= link_to 'Check out your wishlist', wishes_path %>
-<%= link_to 'Reminisce', visits_path %>
+
+  <h1 id="welcome">Welcome to Geography</h2>
+  <%= link_to 'Test your knowledge', play_path, class: "home-links", id: "play" %>
+  <%= link_to 'Check out your Wishlist', wishes_path, class: "home-links", id: "wishlist" %>
+  <%= link_to 'Reminisce over past trips', visits_path, class: "home-links", id: "visits" %>
+
+</div>
