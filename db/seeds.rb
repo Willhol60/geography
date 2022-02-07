@@ -21,18 +21,19 @@ puts "got every country in the world"
 puts "building the database now"
 
 countries.each do |country|
-  languages = country["languages"].values || "none"
+  capital = country["capital"]&.first
+  languages = country["languages"]&.values
   Country.create(
     name: country["name"]["common"],
     flag: country["flags"]["png"],
-    capital: country["capital"] || "unknown",
+    capital: capital,
     region: country["region"],
     subregion: country["subregion"],
     continent: country["continents"][0],
     languages: languages,
     population: country["population"],
     timezone: country["timezones"][0],
-    borders: country["borders"] || "no borders/island"
+    borders: country["borders"] || "None! I'm an island"
   )
   puts "added #{country['name']['common']}"
 end
