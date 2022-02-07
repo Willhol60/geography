@@ -1,14 +1,16 @@
-<h1>Visits#new</h1>
-<p>Find me in app/views/visits/new.html.erb</p>
-
+<div class='list-header'>
+  <h1>Add a trip</h1>
+</div>
 <%# upload photos %>
 
-<%= simple_form_for @visit do |f| %>
-  <%= f.association :country, label_method: :name, value_method: :id %>
-  <%# country alphabetically ordered %>
-  <%= f.input :date, as: :date, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :year], discard_day: true %>
-  <%= f.input :notes %>
-  <%= f.button :submit, class: "btn-primary" %>
-<% end %>
-
-<%= link_to 'Cancel', visits_path %>
+<div class='form'>
+  <%= simple_form_for @visit do |f| %>
+    <%= f.association :country, label_method: :name, value_method: :id, prompt: "-- SELECT ONE --" %>
+    <%# country alphabetically ordered %>
+    <%= f.input :date, as: :date, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :year], discard_day: true %>
+    <%= f.input :notes %>
+    <%= f.file_field :photos, multiple: true, direct_upload: 'false' %>
+    <%= f.button :submit, class: "navigation new" %>
+  <% end %>
+  <%= link_to 'Cancel', visits_path, style:"color: grey" %>
+</div>

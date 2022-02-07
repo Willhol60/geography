@@ -1,3 +1,5 @@
+require 'pry'
+
 class VisitsController < ApplicationController
   def index
     @visits = Visit.all
@@ -9,7 +11,7 @@ class VisitsController < ApplicationController
 
   def create
     @visit = Visit.new(visit_params)
-    if @visit.save
+    if @visit.save!
       redirect_to visits_path
     else
       render flash
@@ -18,9 +20,11 @@ class VisitsController < ApplicationController
   end
 
   def edit
+    @visit = Visit.find(params[:id])
   end
 
   def update
+    binding.pry
   end
 
   def destroy
@@ -29,6 +33,6 @@ class VisitsController < ApplicationController
   private
 
   def visit_params
-    params.require(:visit).permit(:country_id, :date, :notes)
+    params.require(:visit).permit(:country_id, :date, :notes, photos: [])
   end
 end

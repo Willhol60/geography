@@ -1,36 +1,66 @@
+<div class="list-header">
+  <h1>Your Past Trips</h1>
+  <h2>To Do: sort by buttons</h2>
+</div>
 
-<h1><%= current_user.email %>'s Visits</h1>
-
+<%# <div class="actions">
+  <%= link_to "Back to home page", root_path, class: "navigation" %>
+<%# </div> %>
 <%# display all the wishes in a table %>
 <%# should be able to edit, delete, switch it to visits %>
 
 <% if @visits.empty? %>
-  <p>You haven't been anywhere yet!</p>
-  <p>Add one here</p>
-  <%= link_to 'New Visit!', new_visit_path %>
+  <div class="list empty-list">
+    <p>You haven't been anywhere yet!</p>
+    <%= link_to 'Add a trip here', new_visit_path, class: "navigation new" %>
+  </div>
 <% else %>
-  <table>
+  <table class='list'>
     <tr>
-      <th>Country</th>
-      <th>Date visited</th>
+      <th></th>
+      <th></th>
+      <th class='column-one'>Country</th>
+      <th>Date</th>
       <th>Notes</th>
+      <th></th>
     </tr>
     <% @visits.each do |visit| %>
       <tr>
-        <td>
+        <td><%= link_to edit_visit_path(visit) do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+          <%# remote:true
+          <%= render :partial => "form", locals: { wish: wish } do %>
+            <%# Edit %>
+          <%# <% end %>
+        <%# <% end %>
+        </td>
+        <td><%= link_to visit_path(visit), method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </td>
+        <td class='column-one'>
           <%= visit.country.name %>
           <%# <img src="" alt=""> add in the country flag? %>
         </td>
-        <td><%= visit.date %></td>
+        <td><%= visit.date.strftime('%B %Y') %></td>
         <td><%= visit.notes %></td>
         <%# attach photos %>
+        <% if visit.photos.attached? %>
+          <td>
+            <%# <% visit.photos.each do |photo| %>
+              <%# <%= image_tag(photo) %>
+            <%# <% end %>
+            <%= link_to  %>
+            <i class="fas fa-paperclip"></i>
+          </td>
+        <% end %>
         <%# background can show photos that have been uploaded %>
       </tr>
     <% end %>
+    <tr>
+      <%= link_to "Add somewhere else you've visited", new_visit_path %>
+    </tr>
   </table>
   <%# map showing countries visited TRICKY %>
 <% end %>
-
-<%= link_to "Add somewhere else you've visited", new_visit_path %>
-
-<%= link_to "Back to home page", root_path %>
