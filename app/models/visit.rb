@@ -2,6 +2,8 @@ class Visit < ApplicationRecord
   belongs_to :country
   has_many_attached :photos
 
+  validates :date, :notes, presence: true
+
   # callback methods
   after_create_commit :resize_photos
 
@@ -10,10 +12,10 @@ class Visit < ApplicationRecord
   # have a flash for 'you just added a new wish'
 
   def resize_photos
-    if photos.attached?
-      photos.map! do |photo|
-        MiniMagick::Image.read(photo.download).resize("100x100")
-      end
+    return unless photos.attached?
+
+    photos.map! do |photo|
+      MiniMagick::Image.read(photo.download).resize("100x100")
     end
   end
 

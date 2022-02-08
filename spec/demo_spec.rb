@@ -2,35 +2,29 @@ require "spec_helper"
 
 class Dog
   def bark(obedient)
-    if obedient
+    if obedient == true
       "Woof"
     else
       "I will kill you"
     end
   end
-
-  def sit
-
-  end
 end
 
 RSpec.describe Dog do
-  let(:dog) { create(:visit) }
-
   describe "#bark" do
     context "dog is obedient" do
       it "says 'Woof'" do
-        obedient = true
+        dog = Dog.new
 
-        expect(dog.bark(obedient)).to eq "Woof"
+        expect(dog.bark(true)).to eq "Woof"
       end
     end
 
     context "dog is disobedient" do
       it "says 'I will kill you'" do
-        obedient = false
+        dog = Dog.new
 
-        expect(dog.bark(obedient)).to eq "I will kill you"
+        expect(dog.bark(false)).to eq "I will kill you"
       end
     end
   end
