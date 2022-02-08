@@ -23,10 +23,10 @@
       <th>Notes</th>
       <th></th>
     </tr>
-    <% @visits.each do |visit| %>
+    <% @visits.sort_by{ |visit| visit.date }.each do |visit| %>
       <tr>
         <td><%= link_to edit_visit_path(visit) do %>
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-edit" style="color:black"></i>
           <% end %>
           <%# remote:true
           <%= render :partial => "form", locals: { wish: wish } do %>
@@ -34,8 +34,8 @@
           <%# <% end %>
         <%# <% end %>
         </td>
-        <td><%= link_to visit_path(visit), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %>
-            <i class="fas fa-trash-alt"></i>
+        <td><%= button_to visit_path(visit), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %>
+            <i class="fas fa-trash-alt" style="color:black; background:none; border:none"></i>
           <% end %>
         </td>
         <td class='column-one'>

@@ -27,9 +27,10 @@ class VisitsController < ApplicationController
   def create
     @visit = Visit.new(visit_params)
     if @visit.save!
+      flash.notice = "One more trip added!"
       redirect_to visits_path
     else
-      render flash
+      flash.alert = "Uh oh - didn't work"
       render new
     end
   end
@@ -39,7 +40,13 @@ class VisitsController < ApplicationController
   end
 
   def update
-    # binding.pry
+    visit = Visit.find(params[:id])
+    if visit.update(visit_params)
+      redirect_to visits_path
+    else
+      render flash
+      render :edit
+    end
   end
 
   def destroy

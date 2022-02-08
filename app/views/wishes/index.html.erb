@@ -35,7 +35,7 @@
           <%# <% end %>
         <%# <% end %>
         </td>
-        <td><%= link_to wish_path(wish), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %>
+        <td><%= button_to wish_path(wish), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %>
             <i class="fas fa-trash-alt" style="color:black"></i>
           <% end %>
         </td>

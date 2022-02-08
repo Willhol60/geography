@@ -14,9 +14,9 @@ class WishesController < ApplicationController
   def create
     @wish = Wish.new(wish_params)
     if @wish.save
+      flash.notice = "You'll make it there soon!"
       redirect_to wishes_path
     else
-      # render flash
       render :new
     end
   end
