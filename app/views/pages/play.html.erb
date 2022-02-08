@@ -7,13 +7,24 @@
 </div>
 
 <div class="play-window">
-  <img src=<%= @country.flag %> alt="">
+  <img src=<%= @country.flag %> alt="" style="border: 1px solid black" class="mb-1" >
+  <form action="" class="country-guess">
+    <input type="text" id="country-guess" placeholder="Which country has this flag?">
+    <input type="submit">
+  </form>
+  <h1 class="d-none country-name"><%= @country.name %></h1>
 
-  <h1><%= @country.name %></h1>
+  <form action="" class="capital-guess">
+    <input type="text" id="capital-guess" placeholder="Country's capital?">
+    <input type="submit">
+  </form>
+  <h3 class="d-none capital-name"> Capital: <%= @country.capital&.split&.join(' ') %> </h3>
 
-  <h3> Capital: <%= @country.capital&.split&.join(' ') %> </h3>
+  <form action="" class="population-guess">
+    <input type="text" id="population-guess" placeholder="Country's population?">
+    <input type="submit">
+  </form>
+  <h3 class="d-none population"> Population: <%= number_with_delimiter(@country.population) %> </h3>
 
-  <h3> Population: <%= number_with_delimiter(@country.population) %> </h3>
-
-  <%# <p> Bordering countries: <%= @country.borders %>
+  <%= link_to "Reload", play_path, class: "reload" %>
 </div>

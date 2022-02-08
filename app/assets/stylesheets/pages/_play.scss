@@ -8,3 +8,53 @@
   text-align: center;
   padding: 1rem;
 }
+
+.country-name {
+  width: 50%;
+  margin: auto;
+}
+
+.capital-name {
+  width: 50%;
+  margin: auto;
+  margin-top: 1em;
+}
+
+.population {
+  width: 50%;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.country-guess {
+  font-size: larger;
+}
+
+.capital-guess {
+  margin: 1em;
+  font-size: larger;
+}
+
+.population-guess {
+  margin: 1em;
+  font-size: larger;
+}
+
+.correct-guess {
+  background-color: green;
+}
+
+.incorrect-guess {
+  background-color: red;
+}
+
+.reload {
+  text-decoration: none;
+  color: white;
+  font-size: larger;
+  border: 1px solid black;
+  background-color: grey;
+  border-radius: 8px;
+  padding: 6px;
+}
