@@ -1,6 +1,5 @@
 <div class="list-header">
   <h1>Your Past Trips</h1>
-  <h2>To Do: sort by buttons</h2>
 </div>
 
 <%# <div class="actions">
@@ -35,7 +34,7 @@
           <%# <% end %>
         <%# <% end %>
         </td>
-        <td><%= link_to visit_path(visit), method: :delete do %>
+        <td><%= link_to visit_path(visit), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>
         </td>
@@ -51,8 +50,9 @@
             <%# <% visit.photos.each do |photo| %>
               <%# <%= image_tag(photo) %>
             <%# <% end %>
-            <%= link_to  %>
-            <i class="fas fa-paperclip"></i>
+            <%= link_to visit_path(visit) do %>
+              <i class="fas fa-paperclip"></i>
+            <% end %>
           </td>
         <% end %>
         <%# background can show photos that have been uploaded %>

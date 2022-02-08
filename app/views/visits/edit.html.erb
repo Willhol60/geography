@@ -1,10 +1,15 @@
-<h1>Edit your trip to <%= @visit.country.name %> </h1>
+<div class="list-header">
+  <h1>Edit your trip to <%= @visit.country.name %> </h1>
+</div>
 
-<%= simple_form_for @visit do |f| %>
-  <%= f.association :country, label_method: :name, value_method: :id, placeholder: @visit.country.name %>
-  <%# country alphabetically ordered %>
-  <%= f.input :date, as: :date, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :year], discard_day: true %>
-  <%= f.input :notes %>
-  <%= f.input :photos, as: :file %>
-  <%= f.button :submit, class: "btn-primary" %>
-<% end %>
+<div class="form">
+  <%= simple_form_for @visit do |f| %>
+    <%= f.association :country, label_method: :name, value_method: :id, placeholder: @visit.country.name %>
+    <%# country alphabetically ordered %>
+    <%= f.input :date, as: :date, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :year], discard_day: true %>
+    <%= f.input :notes %>
+    <%= f.input :photos, as: :file %>
+    <%= f.button :submit, class: "btn-primary" %>
+  <% end %>
+  <%= link_to 'Cancel', visits_path, style:"color: grey" %>
+</div>

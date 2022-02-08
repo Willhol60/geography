@@ -1,9 +1,16 @@
-<h1><%= @country.name %></h1>
+<div class="actions">
+  <%= link_to "Back to your Wishlist", wishes_path, class: "navigation" %>
+</div>
 
-<img src=<%= @country.flag %> alt="">
+<div class="play-window">
+  <img src=<%= @country.flag %> alt="">
 
-<p> Capital: <%= @country.capital.split() %> </p>
+  <h1><%= @country.name %></h1>
 
-<p> Languages spoken: <%= @country.languages %> </p>
+  <h3> Capital: <%= @country.capital&.split&.join(' ') %> </h3>
 
-<p> Bordering countries: <%= @country.borders %> </p>
+  <h3> Population: <%= number_with_delimiter(@country.population) %> </h3>
+
+  <h3> Languages spoken: <%= @country.languages %> </h3>
+  <%# <p> Bordering countries: <%= @country.borders %>
+</div>
