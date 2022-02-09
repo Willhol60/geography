@@ -1,7 +1,7 @@
 class Visit < ApplicationRecord
   belongs_to :country
   belongs_to :user
-  has_many_attached :photos
+  has_many_attached :photos, dependent: :destroy
 
   validates :date, :notes, presence: true
   validates :notes, length: { maximum: 30 }
