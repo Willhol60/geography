@@ -1,15 +1,20 @@
 class Visit < ApplicationRecord
   belongs_to :country
+  belongs_to :user
   has_many_attached :photos
 
   validates :date, :notes, presence: true
+  validates :notes, length: { maximum: 30 }
+
+  scope :latest, -> { order(date: :asc) }
 
   # callback methods
+  after_create_commit :increment_trip_count
+  after_destroy_commit :decrease_trip_count
+
   after_create_commit :resize_photos
 
-  # after_create_commit :increment_leader_board_points
-  # after_destroy_commit :subtract_leader_board_points
-  # have a flash for 'you just added a new wish'
+  private
 
   def resize_photos
     return unless photos.attached?
@@ -19,9 +24,15 @@ class Visit < ApplicationRecord
     end
   end
 
-  # def increment_leader_board_points
-  #   increment(user.leader_board_points, 1)
-  # end
+  def increment_trip_count
+    user.trip_count += 1
+    user.save!
+  end
+
+  def decrease_trip_count
+    user.trip_count -= 1
+    user.save!
+  end
 end
 
 # more validations (and then test)

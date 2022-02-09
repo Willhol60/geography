@@ -3,7 +3,7 @@ require "mini_magick"
 
 class VisitsController < ApplicationController
   def index
-    @visits = Visit.all
+    @visits = Visit.latest.all
   end
 
   def show
@@ -26,6 +26,7 @@ class VisitsController < ApplicationController
 
   def create
     @visit = Visit.new(visit_params)
+    @visit.user = current_user
     if @visit.save!
       flash.notice = "One more trip added!"
       redirect_to visits_path
