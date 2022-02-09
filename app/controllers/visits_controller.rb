@@ -3,7 +3,7 @@ require "mini_magick"
 
 class VisitsController < ApplicationController
   def index
-    @visits = Visit.latest.all
+    @visits = Visit.all.latest
   end
 
   def show
