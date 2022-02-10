@@ -1,6 +1,5 @@
 <div class="list-header">
   <h1>Your Past Trips</h1>
-  <br>
   <h3><%= pluralize(current_user.trip_count, 'trip') %> and counting...</h3>
 </div>
 
@@ -40,16 +39,24 @@
         <td><%= visit.date.strftime('%B %Y') %></td>
         <td><%= visit.notes %></td>
         <%# attach photos %>
-        <% if visit.photos.attached? %>
-          <td>
-            <%# <% visit.photos.each do |photo| %>
-              <%# <%= image_tag(photo) %>
-            <%# <% end %>
-            <%= link_to visit_path(visit) do %>
-              <i class="fas fa-paperclip" style="color:black"></i>
-            <% end %>
-          </td>
-        <% end %>
+        <td>
+          <% if visit.photo.attached? %>
+            <button type="button" class="fas fa-paperclip" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><%= visit.country.name %></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= cl_image_tag visit.photo.key, height: 300, width: 400, crop: :fill %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </td>
       </tr>
     <% end %>
     <tr>

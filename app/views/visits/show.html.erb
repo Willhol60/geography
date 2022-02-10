@@ -1,8 +1,1 @@
-
-<div class="list-header">
-  <h1>Work In Progress - images proving difficult!</h1>
-</div>
-
-<%# <% @visit.photos.each do |photo| %>
-  <%# <%= MiniMagick::Image.open(photo) %>
-<%# <% end %>
+<%= cl_image_tag @visit.photo.key, height: 300, width: 400, crop: :fill %>

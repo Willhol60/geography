@@ -11,6 +11,6 @@
 
   <h3> Population: <%= number_with_delimiter(@country.population) %> </h3>
 
-  <h3> Languages spoken: <%= @country.languages[2..-3] %> </h3>
+  <h3> Languages spoken: <%= @country.languages.gsub!(/\W/, " ") %> </h3>
   <%# <p> Bordering countries: <%= @country.borders %>
 </div>

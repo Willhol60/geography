@@ -4,11 +4,11 @@
 
 <div class="form">
   <%= simple_form_for @visit do |f| %>
-    <%= f.association :country, label_method: :name, value_method: :id, placeholder: @visit.country.name %>
+    <%= f.association :country, collection: Country.order('name ASC'), label_method: :name, value_method: :id, placeholder: @visit.country.name %>
     <%# country alphabetically ordered %>
     <%= f.input :date, as: :date, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :year], discard_day: true %>
     <%= f.input :notes %>
-    <%= f.input :photos, as: :file %>
+    <%= f.input :photo, as: :file %>
     <%= f.button :submit, class: "btn-primary" %>
   <% end %>
   <%= link_to 'Cancel', visits_path, style:"color: grey" %>
