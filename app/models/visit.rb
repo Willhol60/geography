@@ -9,8 +9,8 @@ class Visit < ApplicationRecord
   scope :latest, -> { order(date: :asc) }
 
   # callback methods
-  after_create_commit :increment_trip_count
-  after_destroy_commit :decrease_trip_count
+  after_create :increment_trip_count
+  after_destroy :decrease_trip_count
 
   after_create_commit :resize_photos
 
@@ -19,7 +19,7 @@ class Visit < ApplicationRecord
   def resize_photos
     return unless photos.attached?
 
-    photos.map! do |photo|
+    photos.map do |photo|
       MiniMagick::Image.read(photo.download).resize("100x100")
     end
   end

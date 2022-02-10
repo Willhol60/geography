@@ -4,10 +4,10 @@
 
 <div class='form'>
   <%= simple_form_for @wish do |f| %>
-    <%= f.association :country, label_method: :name, value_method: :id, prompt: "-- SELECT ONE --" %>
+    <%= f.association :country, collection: Country.order('name ASC'), label_method: :name, value_method: :id, prompt: "-- SELECT ONE --" %>
     <%# country alphabetically ordered %>
     <%= f.input :budget, placeholder: "£" %>
-    <%= f.input :invited, placeholder: "Bernie" %>
+    <%= f.input :invited, label: "Who you going to invite?", placeholder: "Bernie" %>
     <%= f.button :submit, class: "navigation new", style: "" %>
   <% end %>
   <%= link_to 'Cancel', wishes_path, style: 'color: grey' %>

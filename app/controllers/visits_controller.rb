@@ -8,16 +8,6 @@ class VisitsController < ApplicationController
 
   def show
     @visit = Visit.find(params[:id])
-    # @photo_array = []
-    # visit.photos.each do |photo|
-    #   # @photo_array << MiniMagick::Image.open(photo).resize("100x100").format("png").write("#{photo}.png")
-    #   @photo_array << MiniMagick::Image.open(photo).write("#{photo}.png")
-    # end
-    # @image = MiniMagick::Image.open("input.jpg")
-    # image.path #=> "/var/folders/k7/6zx6dx6x7ys3rv3srh0nyfj00000gn/T/magick20140921-75881-1yho3zc.jpg"
-    # image.resize "100x100"
-    # image.format "png"
-    # image.write "output.png"
   end
 
   def new
@@ -27,12 +17,12 @@ class VisitsController < ApplicationController
   def create
     @visit = Visit.new(visit_params)
     @visit.user = current_user
-    if @visit.save!
+    if @visit.save
       flash.notice = "One more trip added!"
       redirect_to visits_path
     else
       flash.alert = "Uh oh - didn't work"
-      render new
+      render :new
     end
   end
 
@@ -45,7 +35,7 @@ class VisitsController < ApplicationController
     if visit.update(visit_params)
       redirect_to visits_path
     else
-      render flash
+      flash.alert = "Uh oh - didn't work"
       render :edit
     end
   end
@@ -59,6 +49,6 @@ class VisitsController < ApplicationController
   private
 
   def visit_params
-    params.require(:visit).permit(:country_id, :date, :notes, photos: [])
+    params.require(:visit).permit(:country_id, :date, :notes)
   end
 end
