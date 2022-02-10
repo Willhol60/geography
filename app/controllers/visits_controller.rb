@@ -1,5 +1,4 @@
 require "pry"
-require "mini_magick"
 
 class VisitsController < ApplicationController
   def index

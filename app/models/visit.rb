@@ -12,17 +12,7 @@ class Visit < ApplicationRecord
   after_create :increment_trip_count
   after_destroy :decrease_trip_count
 
-  # after_create_commit :resize_photos
-
   private
-
-  # def resize_photos
-  #   return unless !photo.nil?
-
-  #   photos.map do |photo|
-  #     MiniMagick::Image.read(photo.download).resize("100x100")
-  #   end
-  # end
 
   def increment_trip_count
     user.trip_count += 1
