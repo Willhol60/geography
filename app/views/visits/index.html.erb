@@ -41,16 +41,16 @@
         <%# attach photos %>
         <td>
           <% if visit.photo.attached? %>
-            <button type="button" class="fas fa-paperclip" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="fas fa-paperclip" data-bs-toggle="modal" data-bs-target="#countryImage"></button>
+            <div class="modal fade" id="countryImage" tabindex="-1" aria-labelledby="countryImageLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><%= visit.country.name %></h5>
+                    <h5 class="modal-title" id="countryImageLabel"><%= visit.country.name %></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <%= cl_image_tag visit.photo.key, height: 300, width: 400, crop: :fill %>
+                    <%= cl_image_tag visit.photo.key, height: 300, width: 465, crop: :fill %>
                   </div>
                 </div>
               </div>
@@ -66,3 +66,6 @@
     </tr>
   </table>
 <% end %>
+
+
+<%= javascript_pack_tag 'visits' %>
