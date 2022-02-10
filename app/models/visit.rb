@@ -1,7 +1,7 @@
 class Visit < ApplicationRecord
   belongs_to :country
   belongs_to :user
-  has_many_attached :photos, dependent: :destroy
+  has_one_attached :photo, dependent: :destroy
 
   validates :date, :notes, presence: true
   validates :notes, length: { maximum: 30 }
@@ -12,17 +12,17 @@ class Visit < ApplicationRecord
   after_create :increment_trip_count
   after_destroy :decrease_trip_count
 
-  after_create_commit :resize_photos
+  # after_create_commit :resize_photos
 
   private
 
-  def resize_photos
-    return unless photos.attached?
+  # def resize_photos
+  #   return unless !photo.nil?
 
-    photos.map do |photo|
-      MiniMagick::Image.read(photo.download).resize("100x100")
-    end
-  end
+  #   photos.map do |photo|
+  #     MiniMagick::Image.read(photo.download).resize("100x100")
+  #   end
+  # end
 
   def increment_trip_count
     user.trip_count += 1

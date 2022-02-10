@@ -49,6 +49,6 @@ class VisitsController < ApplicationController
   private
 
   def visit_params
-    params.require(:visit).permit(:country_id, :date, :notes)
+    params.require(:visit).permit(:country_id, :date, :notes, :photo)
   end
 end
