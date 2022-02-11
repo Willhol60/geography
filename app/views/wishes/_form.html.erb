@@ -3,6 +3,6 @@
     <%= f.input :budget %>
     <%= f.input :invited %>
     <%= f.submit %>
-    <%= link_to 'Delete', wish, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Cancel', wishes_path, style: 'color: grey' %>
   <% end %>
 </div>
