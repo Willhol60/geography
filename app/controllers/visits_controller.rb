@@ -2,7 +2,7 @@ require "pry"
 
 class VisitsController < ApplicationController
   def index
-    @visits = Visit.all.latest
+    @visits = current_user.visits.latest
   end
 
   def show
