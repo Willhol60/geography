@@ -1,7 +1,5 @@
 require "rails_helper"
 
-# let(:dog) { create(:visit) }
-
 RSpec.describe Visit, type: :model do
   describe "associations" do
     it { should belong_to(:country) }

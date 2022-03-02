@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe 'Pages', type: :request do
+RSpec.describe PagesController, type: :request do
   describe "#play" do
     it "loads the play page" do
-      get play_path
+      get play_path(Country.last)
       expect(response).to render_template(:play)
     end
     it "assigns a random country" do
