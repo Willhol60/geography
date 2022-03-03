@@ -43,10 +43,14 @@
 
 .correct-guess {
   background-color: rgb(44, 169, 44);
+  border-radius: 8px;
+  padding: 4px;
 }
 
 .incorrect-guess {
   background-color: rgb(245, 47, 47);
+  border-radius: 8px;
+  padding: 4px;
 }
 
 .reload {
