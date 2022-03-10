@@ -1,12 +1,8 @@
-require "pry"
-
 class VisitsController < ApplicationController
+  before_action :find_visit, only: [:edit, :update, :destroy]
+
   def index
     @visits = current_user.visits.latest
-  end
-
-  def show
-    @visit = Visit.find(params[:id])
   end
 
   def new
@@ -26,12 +22,10 @@ class VisitsController < ApplicationController
   end
 
   def edit
-    @visit = Visit.find(params[:id])
   end
 
   def update
-    visit = Visit.find(params[:id])
-    if visit.update(visit_params)
+    if @visit.update(visit_params)
       redirect_to visits_path
     else
       flash.alert = "Uh oh - didn't work"
@@ -40,8 +34,7 @@ class VisitsController < ApplicationController
   end
 
   def destroy
-    visit = Visit.find(params[:id])
-    visit.destroy
+    @visit.destroy
     redirect_to visits_path
   end
 
@@ -49,5 +42,9 @@ class VisitsController < ApplicationController
 
   def visit_params
     params.require(:visit).permit(:country_id, :date, :notes, :photo)
+  end
+
+  def find_visit
+    @visit = Visit.find(params[:id])
   end
 end

@@ -1,16 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
-#
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
-# migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external dependencies or application code.
-#
-# It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 2022_03_02_110318) do
+ActiveRecord::Schema.define(version: 2022_03_10_120335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +47,16 @@ ActiveRecord::Schema.define(version: 2022_03_02_110318) do
     t.index ["world_id"], name: "index_countries_on_world_id"
   end
 
+  create_table "trips", force: :cascade do |t|
+    t.bigint "country_id", null: false
+    t.bigint "user_id", null: false
+    t.date "date"
+    t.text "notes"
+    t.string "type"
+    t.index ["country_id"], name: "index_trips_on_country_id"
+    t.index ["user_id"], name: "index_trips_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,29 +70,6 @@ ActiveRecord::Schema.define(version: 2022_03_02_110318) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "visits", force: :cascade do |t|
-    t.date "date"
-    t.text "notes"
-    t.bigint "country_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.index ["country_id"], name: "index_visits_on_country_id"
-    t.index ["user_id"], name: "index_visits_on_user_id"
-  end
-
-  create_table "wishes", force: :cascade do |t|
-    t.string "target_date"
-    t.integer "budget"
-    t.string "invited"
-    t.bigint "country_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.index ["country_id"], name: "index_wishes_on_country_id"
-    t.index ["user_id"], name: "index_wishes_on_user_id"
-  end
-
   create_table "worlds", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -102,8 +77,6 @@ ActiveRecord::Schema.define(version: 2022_03_02_110318) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "countries", "worlds"
-  add_foreign_key "visits", "countries"
-  add_foreign_key "visits", "users"
-  add_foreign_key "wishes", "countries"
-  add_foreign_key "wishes", "users"
+  add_foreign_key "trips", "countries"
+  add_foreign_key "trips", "users"
 end

@@ -1,7 +1,7 @@
 <div class='form'>
   <%= simple_form_for wish do |f| %>
-    <%= f.input :budget %>
-    <%= f.input :invited %>
+    <%= f.input :date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 15, order: [:month, :year], discard_day: true %>
+    <%= f.input :notes, placeholder: "max 30 characters", input_html: { maxlength: 30 } %>
     <%= f.submit %>
     <%= link_to 'Cancel', wishes_path, style: 'color: grey' %>
   <% end %>

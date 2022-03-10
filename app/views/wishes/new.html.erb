@@ -5,8 +5,8 @@
 <div class='form'>
   <%= simple_form_for @wish do |f| %>
     <%= f.association :country, collection: Country.order('name ASC'), label_method: :name, value_method: :id, prompt: "-- SELECT ONE --" %>
-    <%= f.input :budget, placeholder: "£" %>
-    <%= f.input :invited, label: "Who you going to invite?", placeholder: "Bernie" %>
+    <%= f.input :date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 15, order: [:month, :year], discard_day: true %>
+    <%= f.input :notes, placeholder: "max 30 characters", input_html: { maxlength: 30 } %>
     <%= f.button :submit, class: "navigation new", style: "" %>
   <% end %>
   <%= link_to 'Cancel', wishes_path, style: 'color: grey' %>

@@ -1,10 +1,5 @@
-class Visit < ApplicationRecord
-  belongs_to :country
-  belongs_to :user
+class Visit < Trip
   has_one_attached :photo, dependent: :destroy
-
-  validates :date, :notes, presence: true
-  validates :notes, length: { maximum: 30 }
 
   scope :latest, -> { order(date: :asc) }
 
@@ -24,5 +19,3 @@ class Visit < ApplicationRecord
     user.save!
   end
 end
-
-# more validations (and then test)
